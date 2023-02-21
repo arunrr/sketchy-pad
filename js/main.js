@@ -1,10 +1,13 @@
 const gridBox = document.querySelector(".grid-box");
-const numberOfGridElements = 5;
+
 const totalGridWidth = parseInt(getComputedStyle(gridBox).width);
+let gridElementWidth = 0;
 
-const gridElementWidth = Math.floor(totalGridWidth / numberOfGridElements);
+function calculateGridElementWidth(numberOfGridElements = 10) {
+  gridElementWidth = Math.floor(totalGridWidth / numberOfGridElements);
+}
 
-function CreateGridElement(gridBox, gridElementWidth) {
+function createGridElement(gridBox, gridElementWidth) {
   const gridElement = document.createElement("div");
   gridElement.style = `border: 1px solid var(--clr-grid-border);width: ${gridElementWidth}px;height: ${gridElementWidth}px`;
   gridElement.addEventListener(
@@ -17,9 +20,13 @@ function CreateGridElement(gridBox, gridElementWidth) {
 function generateGridElements(gridBox, numberOfGridElements, gridElementWidth) {
   for (let i = 1; i <= numberOfGridElements; i++) {
     for (let j = 1; j <= numberOfGridElements; j++) {
-      CreateGridElement(gridBox, gridElementWidth);
+      createGridElement(gridBox, gridElementWidth);
     }
   }
 }
+function generateSketchpad(numberOfGridElements) {
+  calculateGridElementWidth(numberOfGridElements);
+  generateGridElements(gridBox, numberOfGridElements, gridElementWidth);
+}
 
-generateGridElements(gridBox, numberOfGridElements, gridElementWidth);
+generateSketchpad(50);
