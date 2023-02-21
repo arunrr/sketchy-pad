@@ -1,8 +1,8 @@
 const gridBox = document.querySelector(".grid-box");
-const gridElementWidth = 64;
+const numberOfGridElements = 5;
 const totalGridWidth = parseInt(getComputedStyle(gridBox).width);
 
-const numberOfGridElements = Math.floor(totalGridWidth / gridElementWidth);
+const gridElementWidth = Math.floor(totalGridWidth / numberOfGridElements);
 
 function CreateGridElement(gridBox, gridElementWidth) {
   const gridElement = document.createElement("div");
@@ -14,8 +14,12 @@ function CreateGridElement(gridBox, gridElementWidth) {
   gridBox.appendChild(gridElement);
 }
 
-for (let i = 1; i <= numberOfGridElements; i++) {
-  for (let j = 1; j <= numberOfGridElements; j++) {
-    CreateGridElement(gridBox, gridElementWidth);
+function generateGridElements(gridBox, numberOfGridElements, gridElementWidth) {
+  for (let i = 1; i <= numberOfGridElements; i++) {
+    for (let j = 1; j <= numberOfGridElements; j++) {
+      CreateGridElement(gridBox, gridElementWidth);
+    }
   }
 }
+
+generateGridElements(gridBox, numberOfGridElements, gridElementWidth);
