@@ -13,6 +13,10 @@ function isInputValid(inputElement) {
   }
 }
 
+function generateColor() {
+  return Math.round(Math.random() * 255);
+}
+
 function deleteGridElements() {
   gridBox.innerHTML = "";
 }
@@ -31,7 +35,7 @@ function createGridElement(gridBox, gridElementWidth) {
 
   gridElement.addEventListener("mousemove", (e) => {
     if (drag) {
-      e.target.style.backgroundColor = "black";
+      e.target.style.backgroundColor = `rgba(${generateColor()},${generateColor()},${generateColor()},${generateColor()})`;
     }
   });
 
