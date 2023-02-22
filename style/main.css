@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -6,12 +8,27 @@
 
 :root {
   --clr-grid-border: #b7b6b6;
+  --clr-dark: #011627;
+  --clr-white: #e6fafc;
+  --clr-accent: #329f5b;
+  --clr-glow: #3fd679;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--clr-white);
 }
 
 h1 {
+  color: var(--clr-dark);
   text-align: center;
   margin: 2rem 0;
   text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+  color: var(--clr-white);
 }
 
 .container {
@@ -43,18 +60,46 @@ h1 {
 }
 
 label {
+  color: var(--clr-dark);
   text-transform: capitalize;
+  font-weight: 700;
 }
 
 #grid-side {
   width: 50%;
   padding: 1rem;
-  border: none;
   margin: 1rem 0;
+  border: 1px solid var(--clr-glow);
+}
+
+#grid-side:focus {
+  outline: var(--clr-accent) solid 1px;
 }
 
 .button {
   text-transform: uppercase;
   padding: 1rem 2rem;
   width: 50%;
+  font-weight: 700;
+  background-color: var(--clr-accent);
+  border: none;
+  color: var(--clr-white);
+}
+
+.button:hover {
+  background-color: var(--clr-glow);
+}
+
+footer {
+  color: var(--clr-white);
+  margin-top: 1rem;
+  padding: 2rem 0;
+  text-align: center;
+  background-color: var(--clr-dark);
+}
+
+i {
+  font-family: "boxicons";
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
 }
