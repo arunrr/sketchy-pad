@@ -84,6 +84,7 @@ label {
   background-color: var(--clr-accent);
   border: none;
   color: var(--clr-white);
+  margin-bottom: 2rem;
 }
 
 .button:hover {

@@ -1,10 +1,13 @@
 const gridBox = document.querySelector(".grid-box");
 const gridSideInput = document.querySelector("#grid-side");
-const generateButton = document.querySelector(".button");
+const generateButton = document.querySelector("#generateBtn");
+const resetButton = document.querySelector("#resetBtn");
+
 let drag = false;
 
 const totalGridWidth = parseInt(getComputedStyle(gridBox).width);
 let gridElementWidth = 0;
+let prevNumberOfGridElements = 0;
 
 function isInputValid(inputElement) {
   const value = inputElement.value;
@@ -96,6 +99,7 @@ function generateGridElements(gridBox, numberOfGridElements, gridElementWidth) {
   }
 }
 function generateSketchpad(numberOfGridElements = 20) {
+  prevNumberOfGridElements = numberOfGridElements;
   calculateGridElementWidth(numberOfGridElements);
   generateGridElements(gridBox, numberOfGridElements, gridElementWidth);
 }
@@ -105,6 +109,11 @@ gridSideInput.addEventListener("input", (e) => isInputValid(e.target));
 generateButton.addEventListener("click", () => {
   deleteGridElements();
   generateSketchpad(gridSideInput.value);
+});
+
+resetButton.addEventListener("click", () => {
+  deleteGridElements();
+  generateSketchpad(prevNumberOfGridElements);
 });
 
 generateSketchpad();
