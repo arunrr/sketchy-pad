@@ -13,6 +13,39 @@ function isInputValid(inputElement) {
   }
 }
 
+function rgbStringToInt(rgbString) {
+  let [red, green, blue] = rgbString
+    .substring(4, rgbString.length - 1)
+    .split(",");
+
+  red = parseInt(red);
+  green = parseInt(green);
+  blue = parseInt(blue);
+
+  return [red, green, blue];
+}
+
+function generateDarkerColor(rgbString, darknessPercentage) {
+  let [red, green, blue] = rgbStringToInt(rgbString);
+
+  red = red - Math.ceil((red * darknessPercentage) / 100);
+  green = green - Math.ceil((green * darknessPercentage) / 100);
+  blue = blue - Math.ceil((blue * darknessPercentage) / 100);
+
+  if (red < 0) {
+    red = 0;
+  }
+
+  if (green < 0) {
+    green = 0;
+  }
+
+  if (blue < 0) {
+    blue = 0;
+  }
+  return { red, green, blue };
+}
+
 function generateColor() {
   return Math.round(Math.random() * 255);
 }
@@ -28,14 +61,23 @@ function calculateGridElementWidth(numberOfGridElements) {
 function createGridElement(gridBox, gridElementWidth) {
   const gridElement = document.createElement("div");
   gridElement.style = `border: 1px solid var(--clr-grid-border);width: ${gridElementWidth}px;height: ${gridElementWidth}px`;
+  gridElement.style.backgroundColor = "rgb(255,255,255)";
   // Mouse click and drag
-  gridElement.addEventListener("mousedown", () => {
+  gridElement.addEventListener("mousedown", (e) => {
     drag = true;
+
+    // 10 percent darker shade on each click
+    const darkerColors = generateDarkerColor(
+      e.target.style.backgroundColor,
+      10
+    );
+    e.target.style.backgroundColor = `rgb(${darkerColors.red},${darkerColors.green},${darkerColors.blue})`;
   });
 
+  // random bg color on mousemove
   gridElement.addEventListener("mousemove", (e) => {
     if (drag) {
-      e.target.style.backgroundColor = `rgba(${generateColor()},${generateColor()},${generateColor()},${generateColor()})`;
+      e.target.style.backgroundColor = `rgb(${generateColor()},${generateColor()},${generateColor()})`;
     }
   });
 
